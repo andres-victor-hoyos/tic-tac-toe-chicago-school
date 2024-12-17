@@ -1,5 +1,5 @@
 {
-  "name": "tic-tac-toe",
+  "name": "tic-tac-toe-chicago-school",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,5 +11,6 @@
   "license": "ISC",
   "devDependencies": {
     "prettier": "^3.4.2"
-  }
+  },
+  "type": "module"
 }
