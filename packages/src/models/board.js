@@ -26,8 +26,19 @@ export class Board{
        if (from.isNull()){
             throw new Error('No token to move in the given position.');
        }
+       if(!this.neighbor(fromPosition, toPosition)){
+            throw new Error('Cannot move token to a non-neighbor position.');
+       }
        this.putToken(toPosition, from);
        this._boardData[this.index(fromPosition)] = NULL_TOKEN;
+    }
+
+    neighbor(fromPosition, toPosition){
+        const dimension = Math.sqrt(Board.SIZE);
+        const [rowfrom, columnfrom] = [Math.floor(this.index(fromPosition)/dimension), this.index(fromPosition) % dimension];
+        const [rowto, columnto] = [Math.floor(this.index(toPosition)/dimension), (this.index(toPosition) % dimension)];
+        const distance =Math.floor(Math.sqrt(Math.pow(rowfrom - rowto, 2) + Math.pow(columnfrom - columnto, 2)));
+        return distance === 1;
     }
 
     index(position){

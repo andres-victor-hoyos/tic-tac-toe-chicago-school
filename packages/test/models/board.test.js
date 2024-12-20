@@ -12,7 +12,7 @@ describe('Board',()=>{
     it('Given an Board initialiced, When put an token X on position n, Then getTokenOn have X token on positin n', ()=>{
         const board = new BuilderBoardTest()
             .empty()
-            .putToken(1, new X())
+            .putToken(at(1), new X())
             .build();
         expect(board.getTokenOn(1).isNull()).toBe(false);
     });
@@ -27,8 +27,8 @@ describe('Board',()=>{
             (token1, token2)=>{
         expect(()=>new BuilderBoardTest()
             .empty()
-            .putToken(1, token1)
-            .putToken(1, token2)
+            .putToken(at(1), token1)
+            .putToken(at(1), token2)
             .build()).toThrow("Position is occuped.")
     });
 
@@ -39,30 +39,30 @@ describe('Board',()=>{
         const position = 1;
 
         expect(() => {
-            board.putToken(position, new NullToken());
+            board.putToken(at(position), new NullToken());
         }).toThrow('Cannot place a NullToken on the board.');
     });
 
     it('Given a Board with a token in position n, when moving the token to position m, then position n should be empty and position m should have the token.', () => {
         const board = new BuilderBoardTest()
             .empty()
-            .putToken(1, new X())
+            .putToken(at(1), new X())
             .build();
 
-        board.moveToken(1, 2); 
-        expect(board.getTokenOn(1).isNull()).toBe(true);
-        expect(board.getTokenOn(2).isEqual(new X())).toBe(true);
+        board.moveToken(from(1), at(2)); 
+        expect(board.getTokenOn(at(1)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(2)).isEqual(new X())).toBe(true);
     });
 
     it('Given a Board, when trying to move a token to a position already occupied, then an error occurs.', () => {
         const board = new BuilderBoardTest()
             .empty()
-            .putToken(1, new X())
-            .putToken(2, new X())
+            .putToken(at(1), new X())
+            .putToken(at(2), new X())
             .build();
 
         expect(() => {
-            board.moveToken(1, 2); // Intentar mover el token a una posición ocupada.
+            board.moveToken(from(1), to(2));
         }).toThrow('Position is occuped.');
     });
 
@@ -72,8 +72,108 @@ describe('Board',()=>{
             .build();
 
         expect(() => {
-            board.moveToken(1, 2); // Intentar mover desde una posición vacía.
+            board.moveToken(from(1), to(2)); 
         }).toThrow('No token to move in the given position.');
+    });
+
+    it('Given a Board, when trying to move a token to a non-neighbor position, then an error occurs.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(1), new X())
+            .build();
+        expect(() => {
+            board.moveToken(from(1), to(3)); 
+        }).toThrow('Cannot move token to a non-neighbor position.');
+    });
+
+    it('Given a Board, when moving a token to the right (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(6));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(6)).isEqual(new X())).toBe(true);
+    });
+
+    it('Given a Board, when moving a token to the left (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(4));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(4)).isEqual(new X())).toBe(true);
+    });
+    
+    it('Given a Board, when moving a token to the up (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(2));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(2)).isEqual(new X())).toBe(true);
+    });
+
+    it('Given a Board, when moving a token to the left-up (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(1));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(1)).isEqual(new X())).toBe(true);
+    });
+
+
+    it('Given a Board, when moving a token to the right-up (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(3));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(3)).isEqual(new X())).toBe(true);
+    });
+
+    it('Given a Board, when moving a token to the down (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(8));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(8)).isEqual(new X())).toBe(true);
+    });
+
+    it('Given a Board, when moving a token to the right-down (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(7));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(7)).isEqual(new X())).toBe(true);
+    });
+
+
+    it('Given a Board, when moving a token to the right-down (neighbor position), then the move is performed.', () => {
+        const board = new BuilderBoardTest()
+            .empty()
+            .putToken(at(5), new X()) 
+            .build();
+    
+        board.moveToken(from(5), to(9));     
+        expect(board.getTokenOn(at(5)).isNull()).toBe(true);
+        expect(board.getTokenOn(at(9)).isEqual(new X())).toBe(true);
     });
 
 });
@@ -94,7 +194,19 @@ class BuilderBoardTest{
     }
 
     build(){
-        this._pushes.map(p=>this._board.putToken(p.position, p.token));4
+        this._pushes.map(p=>this._board.putToken(at(p.position), p.token));
         return this._board;
     }
+}
+
+function at(position){
+    return position;
+}
+
+function from(position){
+    return position;
+}
+
+function to(position){
+    return position;
 }
