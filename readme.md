@@ -14,3 +14,9 @@ This project is ideal for developers seeking to refine their TDD skills and crea
 - Built with TDD principles.  
 - Clean and maintainable codebase.  
 - Focus on software craftsmanship best practices.  
+
+### Installation  
+ ```bash
+   git clone https://github.com/your-username/tic-tac-toe-chicago-school.git
+   pnpm install
+   pnpm --filter @tic-tac-toe-chicago-school/test tes
