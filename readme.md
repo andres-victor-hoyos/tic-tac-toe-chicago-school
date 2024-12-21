@@ -17,6 +17,6 @@ This project is ideal for developers seeking to refine their TDD skills and crea
 
 ### Installation  
  ```bash
-   git clone https://github.com/your-username/tic-tac-toe-chicago-school.git
+   git clone https://github.com/andres-victor-hoyos/tic-tac-toe-chicago-school
    pnpm install
    pnpm --filter @tic-tac-toe-chicago-school/test tes
