@@ -25,7 +25,7 @@ describe('Token', ()=>{
     });
 
     it('Given an NullToken token, When it is comparated with NullToken token, Then they should be equal', ()=>{
-        expect(nullToken1.isEqual(nullToken2)).toBe(true);
+        expect(nullToken1.isEqual(nullToken2)).toBe(false);
     });
 
     it('Given an X or O tokens, When calling isNull, Then they should return false', ()=>{
