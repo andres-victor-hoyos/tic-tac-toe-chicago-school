@@ -6,7 +6,7 @@ class Token {
     }
 
     isEqual(token){
-        return this.constructor === token.constructor;
+        return this.constructor === token.constructor && !token.isNull();
     }
 
     isNull(){
