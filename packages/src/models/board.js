@@ -16,9 +16,8 @@ export class Board{
         if(token.isNull())
             throw new Error('Cannot place a NullToken on the board.');
         if(!this.getTokenOn(position).isNull())
-            throw new Error("Position is occuped.")    
-        this._boardData[position-1]=token;   
-        
+            throw new Error("Position is occupied.")    
+        this._boardData[position-1]=token;
     }
 
     moveToken(fromPosition, toPosition){
@@ -26,14 +25,14 @@ export class Board{
        if (from.isNull()){
             throw new Error('No token to move in the given position.');
        }
-       if(!this.neighbor(fromPosition, toPosition)){
+       if(!this._neighbor(fromPosition, toPosition)){
             throw new Error('Cannot move token to a non-neighbor position.');
        }
        this.putToken(toPosition, from);
        this._boardData[this.index(fromPosition)] = NULL_TOKEN;
     }
 
-    neighbor(fromPosition, toPosition){
+    _neighbor(fromPosition, toPosition){
         const dimension = Math.sqrt(Board.SIZE);
         const [rowfrom, columnfrom] = [Math.floor(this.index(fromPosition)/dimension), this.index(fromPosition) % dimension];
         const [rowto, columnto] = [Math.floor(this.index(toPosition)/dimension), (this.index(toPosition) % dimension)];

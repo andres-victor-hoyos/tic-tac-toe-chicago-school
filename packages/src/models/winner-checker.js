@@ -1,16 +1,26 @@
-export class WinnerChecker{
-    constructor(board){
+export class WinnerChecker {
+    constructor(board) {
         this._board = board;
+        this._winningCombinations = [
+            [7, 8, 9],
+            [4, 5, 6],
+            [3, 5, 7],
+            [3, 6, 9],
+            [2, 5, 8],
+            [1, 4, 7],
+            [1, 5, 9],
+            [1, 2, 3]
+        ];
     }
-    
-    isTicTacToe(){
-        return this._board.getTokenOn(7).isEqual(this._board.getTokenOn(8)) && this._board.getTokenOn(8).isEqual(this._board.getTokenOn(9)) ||
-            this._board.getTokenOn(4).isEqual(this._board.getTokenOn(5)) && this._board.getTokenOn(5).isEqual(this._board.getTokenOn(6)) ||
-            this._board.getTokenOn(3).isEqual(this._board.getTokenOn(5)) && this._board.getTokenOn(5).isEqual(this._board.getTokenOn(7)) ||        
-            this._board.getTokenOn(3).isEqual(this._board.getTokenOn(6)) && this._board.getTokenOn(6).isEqual(this._board.getTokenOn(9)) ||
-            this._board.getTokenOn(2).isEqual(this._board.getTokenOn(5)) && this._board.getTokenOn(5).isEqual(this._board.getTokenOn(8)) ||
-            this._board.getTokenOn(1).isEqual(this._board.getTokenOn(4)) && this._board.getTokenOn(4).isEqual(this._board.getTokenOn(7)) || 
-            this._board.getTokenOn(1).isEqual(this._board.getTokenOn(5)) && this._board.getTokenOn(5).isEqual(this._board.getTokenOn(9)) || 
-            this._board.getTokenOn(1).isEqual(this._board.getTokenOn(2)) && this._board.getTokenOn(2).isEqual(this._board.getTokenOn(3));
-    }   
-};
+
+    isTicTacToe() {
+        return this._winningCombinations.some(([pos1, pos2, pos3]) => 
+            this._areTokensEqual(pos1, pos2, pos3)
+        );
+    }
+
+    _areTokensEqual(pos1, pos2, pos3) {
+        const [token1, token2, token3] = [pos1, pos2, pos3].map(pos => this._board.getTokenOn(pos));
+        return token1.isEqual(token2) && token2.isEqual(token3);
+    }
+}
