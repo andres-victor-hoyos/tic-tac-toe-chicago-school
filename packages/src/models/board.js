@@ -17,7 +17,8 @@ export class Board{
             throw new Error('Cannot place a NullToken on the board.');
         if(!this.getTokenOn(position).isNull())
             throw new Error("Position is occupied.")    
-        this._boardData[position-1]=token;
+        this._boardData[position-1]=token;   
+        
     }
 
     moveToken(fromPosition, toPosition){

@@ -155,14 +155,6 @@ class BuilderBoardTest{
     }
 }
 
-function at(position){
-    return position;
-}
-
-function from(position){
-    return position;
-}
-
-function to(position){
-    return position;
-}
+const at = (position) => position;
+const from = (position) => position;
+const to = (position) => position;
