@@ -1,3 +1,3 @@
 export default {
-    collectCoverage: false,
+    collectCoverage: true,
   };
