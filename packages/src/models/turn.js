@@ -27,4 +27,12 @@ export class Turn {
     currentPlayer() {
         return this._players[this._turnCount % this._players.length];
     }
+
+    moveTokenFromRackToBoard(position) {
+        this.currentPlayer().moveTokenFromRackToBoard(position);
+    }
+
+    moveToken(from, to) {
+        this.currentPlayer().moveTokenFromBoardToBoard(from, to);
+    }
 }

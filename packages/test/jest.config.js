@@ -1,3 +1,4 @@
 export default {
-    collectCoverage: true,
+    collectCoverage: false,
+    verbose: false
   };
