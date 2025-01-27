@@ -51,7 +51,5 @@ describe('Turn', () => {
                 expect(player).toStrictEqual(turn.currentPlayer());
             });
         });
-
-
     });
 });

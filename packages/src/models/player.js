@@ -1,7 +1,8 @@
+import { Messages } from './messages';
 export class Player {
     constructor(board) {
         if (!board) {
-            throw new Error('Board is required.');
+            throw new Error(Messages.BOARD_REQUIRED);
         }
         this._board = board;
         this._tokenCount = 3;
@@ -9,7 +10,7 @@ export class Player {
     
     assignToken(token) {
         if (token.isNull()) {
-            throw new Error('Cannot assign a NullToken to a player.');
+            throw new Error(Messages.NULL_TOKEN_ASSIGNMENT);
         }
         this._token = token;
     }
@@ -20,10 +21,10 @@ export class Player {
 
     moveTokenFromRackToBoard(position) {
         if (!this._token) {
-            throw new Error('Player must assign a token before making a move.');
+            throw new Error(Messages.TOKEN_REQUIRED);
         }
         if(this._tokenCount === 0){
-            throw new Error('Player must move a token of the board.');
+            throw new Error(Messages.TOKEN_ON_BOARD);
         }
         this._tokenCount--;
         this._board.putToken(position, this._token);
@@ -31,10 +32,10 @@ export class Player {
 
     moveTokenFromBoardToBoard(fromPosition, toPosition) {
         if(this._tokenCount > 0){
-            throw new Error('Player must move all tokens from rack to board.');
+            throw new Error(Messages.TOKEN_FROM_RACK);
         }
         if(!this._token.isEqual(this._board.getTokenOn(fromPosition))){
-            throw new Error('Player must move a token that belongs to him.');
+            throw new Error(Messages.TOKEN_BELONGS);
         }
         this._board.moveToken(fromPosition, toPosition);
     }

@@ -1,9 +1,9 @@
 import {X,O} from './token';
-
+import { Messages } from './messages';
 export class Turn {
     constructor(players) {
         if (!players) {
-            throw new Error('Players are required.');
+            throw new Error(Messages.PLAYERS_REQUIRED);
         }
         this._players = players;
         this._turnCount = 0;

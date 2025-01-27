@@ -3,6 +3,7 @@ import { Player } from "./player";
 import { Turn } from "./turn";
 import { WinnerChecker } from "./winner-checker";
 import { X, O } from "./token";
+import { Messages } from "./messages";
 
 export class Game {
   start() {
@@ -14,7 +15,7 @@ export class Game {
   }
 
   placeTokenIn(position) {
-    if (this.hasWinner()) throw new Error("Game is over.");
+    if (this.hasWinner()) throw new Error(Messages.GAME_OVER);
     this._turn.moveTokenFromRackToBoard(position);
     this._turn.nextPlayer();
   }

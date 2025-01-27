@@ -1,4 +1,5 @@
 import { NullToken } from "./token";
+import { Messages } from "./messages";
 
 const NULL_TOKEN = new NullToken();
 export class Board{
@@ -14,9 +15,9 @@ export class Board{
 
     putToken(position, token){
         if(token.isNull())
-            throw new Error('Cannot place a NullToken on the board.');
+            throw new Error(Messages.NO_TOKEN);
         if(!this.getTokenOn(position).isNull())
-            throw new Error("Position is occupied.")    
+            throw new Error(Messages.POSITION_OCCUPIED)    
         this._boardData[position-1]=token;   
         
     }
@@ -24,10 +25,10 @@ export class Board{
     moveToken(fromPosition, toPosition){
        const from = this.getTokenOn(fromPosition);
        if (from.isNull()){
-            throw new Error('No token to move in the given position.');
+            throw new Error(Messages.NO_TOKEN_TO_MOVE);
        }
        if(!this._neighbor(fromPosition, toPosition)){
-            throw new Error('Cannot move token to a non-neighbor position.');
+            throw new Error(Messages.NON_NEIGHBOR);
        }
        this.putToken(toPosition, from);
        this._boardData[this.index(fromPosition)] = NULL_TOKEN;

@@ -1,7 +1,8 @@
+import {Messages} from './messages';
 class Token {
     constructor() {
         if (new.target === Token) {
-            throw new Error('Cannot instantiate abstract class Token');
+            throw new Error(Messages.CANNOT_INSTANTIATE_ABSTRACT_CLASS_TOKEN);
         }
     }
 
