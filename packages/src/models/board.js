@@ -18,8 +18,7 @@ export class Board{
             throw new Error(Messages.NO_TOKEN);
         if(!this.getTokenOn(position).isNull())
             throw new Error(Messages.POSITION_OCCUPIED)    
-        this._boardData[position-1]=token;   
-        
+        this._boardData[position-1]=token;     
     }
 
     moveToken(fromPosition, toPosition){

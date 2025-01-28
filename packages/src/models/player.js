@@ -15,7 +15,11 @@ export class Player {
         this._token = token;
     }
 
-    TokenRackCount(){
+    tokenAssigned(){
+        return this._token;
+    }
+
+    tokenRackCount(){
         return this._tokenCount;
     }
 

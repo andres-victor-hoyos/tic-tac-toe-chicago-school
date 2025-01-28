@@ -1,17 +1,19 @@
 {
-  "name": "tic-tac-toe-chicago-school",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-     "dev:frontend": "pnpm --filter frontend vite",
-     "dev:test": "pnpm --filter test test"
+    "vite": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@tic-tac-toe-chicago-school/models": "workspace:^"
+  },
   "devDependencies": {
-    "prettier": "^3.4.2"
+    "vite": "^6.0.11"
   },
   "type": "module"
 }
