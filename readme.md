@@ -19,12 +19,15 @@ This project is ideal for developers seeking to refine their TDD skills and crea
  ```bash
    git clone https://github.com/andres-victor-hoyos/tic-tac-toe-chicago-school
    pnpm install
+  ```
 
 ### Running Test   
-```bash
-pnpm --filter dev:test
+  ```bash
+  pnpm --filter dev:test
+  ```
 
 ### Running Frontend   
-```bash
-pnpm --filter dev:vite
+  ```bash
+  pnpm --filter dev:vite
+  ```
 
