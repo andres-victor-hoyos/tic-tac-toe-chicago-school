@@ -28,6 +28,6 @@ This project is ideal for developers seeking to refine their TDD skills and crea
 
 ### Running Frontend   
   ```bash
-  pnpm --filter dev:vite
+  pnpm dev:vite
   ```
 
