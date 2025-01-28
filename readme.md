@@ -23,7 +23,7 @@ This project is ideal for developers seeking to refine their TDD skills and crea
 
 ### Running Test   
   ```bash
-  pnpm --filter dev:test
+  pnpm dev:test
   ```
 
 ### Running Frontend   
