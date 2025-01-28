@@ -60,6 +60,21 @@ class CellRackView extends CellView{
     }
 }
 
+class CellBoardView extends CellView{
+  constructor(){
+    super();
+    this.shadowRoot.querySelector(".cell").textContent = game.tokenInPosition(this.position);
+  }
+
+  get position(){
+    return this.getAttribute('position');
+  }
+
+  set position(value){
+    this.setAttribute('position', value); 
+  }
+}
+
 class PlayerRackView extends HTMLElement{
     constructor(){
       super();
@@ -108,22 +123,18 @@ class BoardView extends HTMLElement{
           }
         </style>
         <div class="board">
-          <div class="row">
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-          </div>
-          <div class="row">
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-          </div>
-          <div class="row">
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-            <cell-view></cell-view>
-          </div>
         </div>`
+      const board = this.shadowRoot.querySelector(".board");
+      for(let i=0; i<3; i++){
+        const row = document.createElement("div");
+        row.classList.add("row");
+        for(let j=0; j<3; j++){
+          const cell = document.createElement("cell-board-view");
+          cell.setAttribute("position", i*3+j+1);
+          row.appendChild(cell);
+        }
+        board.appendChild(row);
+      }
     }
   }
 
@@ -132,3 +143,4 @@ customElements.define('cell-view', CellView);
 customElements.define('board-view', BoardView);
 customElements.define('game-view', GameView);
 customElements.define('cell-rack-view', CellRackView);
+customElements.define('cell-board-view', CellBoardView);

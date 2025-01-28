@@ -15,6 +15,9 @@ This project is ideal for developers seeking to refine their TDD skills and crea
 - Clean and maintainable codebase.  
 - Focus on software craftsmanship best practices.  
 
+## Models Class Diagram
+![Diagram PlantUML](./docs/models-class.png)
+
 ### Installation  
  ```bash
    git clone https://github.com/andres-victor-hoyos/tic-tac-toe-chicago-school
